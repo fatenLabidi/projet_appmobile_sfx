@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('citizen-engagement', ['ionic', 'angular-storage'])
+angular.module('citizen-engagement', ['ionic', 'angular-storage','geolocation','leaflet-directive'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -49,6 +49,8 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
       // The URL (here "/newIssue") is used only internally with Ionic; you never see it displayed anywhere.
       // In an Angular website, it would be the URL you need to go to with your browser to enter this state.
       url: '/newIssue',
+      controller: 'NewIssueCtrl',
+      controllerAs: 'newIssueCtrl',
       templateUrl: 'templates/newIssue.html'
     })
 
@@ -65,6 +67,8 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
       url: '/issueMap',
       views: {
         'tab-issueMap': {
+          controller: 'MapCtrl',
+          controllerAs : 'mapCtrl',
           templateUrl: 'templates/issueMap.html'
         }
       }
