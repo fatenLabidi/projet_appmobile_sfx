@@ -54,6 +54,15 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
       templateUrl: 'templates/newIssue.html'
     })
 
+    .state('profil', {
+      // The URL (here "/newIssue") is used only internally with Ionic; you never see it displayed anywhere.
+      // In an Angular website, it would be the URL you need to go to with your browser to enter this state.
+      url: '/profil',
+      controller: 'profilCtrl',
+      controllerAs: 'profilCtrl',
+      templateUrl: 'templates/profil.html'
+    })
+
     // This is the abstract state for the tabs directive.
     .state('tab', {
       url: '/tab',

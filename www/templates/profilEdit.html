@@ -1,0 +1,32 @@
+<ion-header-bar class="bar-assertive">
+    <img src="/img/profile.svg" class="profile"/>       
+    <h1 class="title titre">CitizenEng.</h1>
+    <img src="/img/filter.svg" class="filter"/>       
+  </ion-header-bar>
+  
+<ion-view view-title="Profil">
+  <ion-content>
+    <h1 class="issueListTitle">
+      Profil
+    </h1>
+
+
+    <div>
+      <div class="item item-avatar">
+        <h2><b>Username </b></h2>
+        <h3>{{ profilCtrl.user.name }}</h3>
+        <h2><b>Fistname </b></h2>
+        <h3>{{profilCtrl.user.firstname}}</h3>
+        <h2><b>Lastname </b></h2>
+        <h3>{{profilCtrl.user.lastname}}</h3>
+        <h2><b>Phone </b></h2>
+        <h3>{{profilCtrl.user.phone}}</h3>
+        <h2><b>Role </b></h2>
+        <h3>{{profilCtrl.user.roles[0]}}</h3>
+      </div>
+    </div>
+
+    <button class="button button-full button-positive" ng-click="profilCtrl.edit()" ng-disabled="loginForm.$invalid">Edit
+    </button>
+  </ion-content>
+</ion-view>
