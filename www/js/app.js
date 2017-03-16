@@ -38,6 +38,13 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
       templateUrl: 'templates/login.html'
     })
 
+    .state('register', {
+      url: '/register',
+      controller: 'RegisterCtrl',
+      controllerAs: 'registerCtrl',
+      templateUrl: 'templates/register.html'
+    })
+
     // This is the abstract state for the tabs directive.
     .state('tab', {
       url: '/tab',
