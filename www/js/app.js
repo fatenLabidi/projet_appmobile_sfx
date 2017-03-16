@@ -86,7 +86,7 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
     })
 
     // This is the issue details state.
-    .state('tab.issueDetails', {
+    /*.state('tab.issueDetails', {
       // We use a parameterized route for this state.
       // That way we'll know which issue to display the details of.
       url: '/issueDetails/:issueId',
@@ -98,7 +98,7 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
         }
       }
     })
-  ;
+  ;*/
 
   // Define the default state (i.e. the first screen displayed when the app opens).
   $urlRouterProvider.otherwise(function($injector) {

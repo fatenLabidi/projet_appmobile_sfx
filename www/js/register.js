@@ -5,7 +5,9 @@ angular.module('citizen-engagement').controller('RegisterCtrl', function(AuthSer
   $scope.$on('$ionicView.beforeEnter', function() {
     // Re-initialize the user object every time the screen is displayed.
     // The first name and last name will be automatically filled from the form thanks to AngularJS's two-way binding.
-    registerCtrl.user = {};
+    registerCtrl.user = {
+      roles: ["citizen"]
+    };
   });
 
   // Add the register function to the scope.
@@ -20,15 +22,13 @@ angular.module('citizen-engagement').controller('RegisterCtrl', function(AuthSer
       delay: 750
     });
 
-    // Make the request to retrieve or create the user.
+    // Make the request to create the user.
     $http({
       method: 'POST',
-      url: '/api-proxy/auth',
+      url: '/api-proxy/users',
       data: registerCtrl.user
     }).then(function(res) {
 
-      // If successful, give the token to the authentication service.
-      AuthService.setAuthToken(res.data.token);
 
       // Hide the loading message.
       $ionicLoading.hide();
@@ -40,14 +40,14 @@ angular.module('citizen-engagement').controller('RegisterCtrl', function(AuthSer
         historyRoot: true
       });
 
-      // Go to the issue creation tab.
-      $state.go('tab.newIssue');
+      // Go to log.
+      $state.go('login');
 
     }).catch(function() {
 
       // If an error occurs, hide the loading message and show an error message.
       $ionicLoading.hide();
-      loginCtrl.error = 'Could not log in.';
+      registerCtrl.error = 'Could not create the account.';
     });
   };
 });
