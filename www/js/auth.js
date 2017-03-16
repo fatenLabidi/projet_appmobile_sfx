@@ -59,7 +59,7 @@ angular.module('citizen-engagement').controller('LoginCtrl', function(AuthServic
       });
 
       // Go to the issue creation tab.
-      $state.go('tab.newIssue');
+      $state.go('newIssue');
 
     }).catch(function() {
 
