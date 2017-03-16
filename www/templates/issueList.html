@@ -7,10 +7,10 @@
 <ion-view view-title="Issue List">
   <ion-content>
     <p class="issueListTitle">
-      <button class="button button-small button-outline button-positive">
+      <button class="button button-small button-outline button-positive" id="allIssue" ng-click="issueListCtrl.showAll()">
         <b>All issues</b>
       </button>
-      <button class="button button-small button-outline button-positive">
+      <button class="button button-small button-outline button-positive" id="myIssue" ng-click="issueListCtrl.showMine()" >
         <b>My issues</b>
       </button>
     </p>
@@ -21,7 +21,7 @@
     </ion-list>
 
 -->
-<div class="list card" ng-repeat="issue in issueListCtrl.issues">
+<div class="list card" id="corp" ng-repeat="issue in issueListCtrl.issues">
 
   <div class="item item-avatar">
     <img src="/img/{{issue.creator.name}}.jpg">
