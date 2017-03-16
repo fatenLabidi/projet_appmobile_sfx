@@ -56,7 +56,7 @@ angular.module('citizen-engagement').controller('NewIssueCtrl', function(geoloca
   });
 });
 
-angular.module('citizen-engagement').controller('MapCtrl', function(mapboxSecret, $scope) {
+angular.module('citizen-engagement').controller('MapCtrl', function(mapboxSecret, $scope, $http) {
   var mapCtrl = this; 
   var mapboxMapId = 'mapbox.satellite';  // Use your favorite tileset here mapbox://styles/xavijunior/civccxu4c00aq2jpyjjgqoeyp
   // Build the tile layer URL
@@ -68,8 +68,8 @@ angular.module('citizen-engagement').controller('MapCtrl', function(mapboxSecret
   };
   mapCtrl.markers = [];
   mapCtrl.center = {
-    lat: 51.48,
-    lng: 0,
+    lat: 46.781498,
+    lng: 6.647568,
     zoom: 33
   };
 
@@ -82,8 +82,8 @@ var msg = '<p>Hello mon gars</p>';
 msg += '<p>{{ record.title }} <b> {{ record.description }} </b></p>';
 
   mapCtrl.markers.push({
-    lat: 51.48,
-    lng: 0,
+    lat: 46.78149,
+    lng: 6.647568,
     message: msg,
       getMessageScope: function() {
         var scope = $scope.$new();
@@ -91,5 +91,23 @@ msg += '<p>{{ record.title }} <b> {{ record.description }} </b></p>';
         return scope;
       }
   });
+
+
+
+    $http({
+      method: 'GET',
+      url: '/api-proxy/issues',
+    }).then(function(res) {
+        for(var i=0;i<res.data.length;i++){
+          var issue = res.data[i];
+           mapCtrl.markers.push({
+              lat: issue.location.coordinates[1],
+              lng: issue.location.coordinates[0],
+              message: issue.description
+            });
+        }
+    }).catch(function() {
+      issueDetailsCtrl.error = 'Could not found issue';
+    });
 
 });
