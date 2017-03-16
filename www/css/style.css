@@ -1,1 +1,43 @@
 /* Empty. Add your own CSS if you like */
+ .titre{
+     font-size: 23px;
+     font-family: rockwell; 
+ }
+.profile{
+    height:30px;
+    width:auto;
+    position:absolute;
+    left:0;
+    margin-left: 2em;
+    margin-top: 2px;
+}
+
+
+.filter{
+    height:30px;
+    width:auto;
+    position:absolute;
+    right:0;
+    margin-right: 2em;
+    margin-top:2px;
+}
+
+
+.issueListTitle{
+
+text-align: center;
+margin-top: 5px;
+
+}
+
+
+.error{
+    color:indianred;
+    font-weight: bold;
+}
+
+.imgListe{
+    height:100px;
+    width:100px;
+    margin-right:20px;
+}
