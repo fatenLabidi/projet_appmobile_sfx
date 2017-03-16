@@ -1,4 +1,25 @@
 /* Empty. Add your own CSS if you like */
+
+.item{
+    background-color: none !important;
+}    
+
+.home{
+    padding: 0;
+    margin: auto;
+    background-color: #444;
+}
+
+ .titreHome{
+     font-size: 30px;
+     font-family: rockwell; 
+     text-align: center;
+     padding-top: 2em;
+     padding-bottom: 2em;
+
+ }
+
+
  .titre{
      font-size: 23px;
      font-family: rockwell; 
