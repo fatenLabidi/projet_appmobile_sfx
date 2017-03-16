@@ -1,5 +1,48 @@
+    <ion-header-bar class="bar-assertive">
+    <img src="/img/profile.svg" class="profile"/>       
+    <h1 class="title titre">CitizenEng.</h1>
+    <img src="/img/filter.svg" class="filter"/>       
+  </ion-header-bar>
+  
 <ion-view view-title="Issue List">
   <ion-content>
-    <p>Hello! This is the issue list screen.</p>
+    <p class="issueListTitle">
+      <button class="button button-small button-outline button-positive">
+        <b>All issues</b>
+      </button>
+      <button class="button button-small button-outline button-positive">
+        <b>My issues</b>
+      </button>
+    </p>
+    <!--<ion-list>
+      <ion-item ng-repeat="issue in issueListCtrl.issues">
+        <img src="{{issue.imageUrl}}" class="imgListe"> <b>status</b> : {{ issue.state }} <p> <b>description</b> : </p><p>{{ issue.description }}</p>
+      </ion-item>
+    </ion-list>
+
+-->
+<div class="list card" ng-repeat="issue in issueListCtrl.issues">
+
+  <div class="item item-avatar">
+    <img src="/img/{{issue.creator.name}}.jpg">
+    <h2><b>{{ issue.creator.firstname }} {{ issue.creator.lastname }}</b> ({{issue.creator.name}})</h2>
+    <h4>
+    {{issue.createdAt | date: 'dd/MM/yyyy, HH:mm'}}
+    </h4>
+  </div>
+
+  <div class="item item-body">
+    <img class="full-image" src="{{issue.imageUrl}}">
+    <p style="font-style: italic;">
+      {{ issue.description }}
+    </p>
+    <p>
+      status : <b> {{ issue.state }}</b>
+    </p>
+  </div>
+
+</div>
+
+
   </ion-content>
 </ion-view>
