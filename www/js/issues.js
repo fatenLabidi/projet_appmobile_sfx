@@ -111,3 +111,34 @@ msg += '<p>{{ record.title }} <b> {{ record.description }} </b></p>';
     });
 
 });
+
+
+//controller pour créer un issue
+angular.module('citizen-engagement').controller('CreatIssueCtrl', function(AuthService, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+    
+    creatIssueCtrl.save = function(){
+        $http({
+          method: 'POST',
+          url: '/api-proxy/issues',
+          data: creatIssueCtrl.issue
+        }).then(function(res) {
+          $state.go('/issueList');
+        }).catch(function() {
+          registerCtrl.error = 'Could not create an issue.';
+        });
+    }
+    
+});
+
+
+//controller pour getter  la listes des types
+angular.module('citizen-engagement').controller('GetIssueTypesCtrl', function(AuthService, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+    $http({
+      method: 'GET',
+      url: '/api-proxy/issueTypes',
+    }).then(function(res) {
+         getIssueTypesCtrl.types = res.data;
+    }).catch(function() {
+            registerCtrl.error = 'Could not found type of issue.';
+    });
+});

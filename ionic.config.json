@@ -1,10 +1,6 @@
 {
   "name": "citizen-engagement",
-<<<<<<< HEAD
-  "app_id": "75c5135f",
-=======
   "app_id": "1ad56d98",
->>>>>>> refs/remotes/origin/master
   "proxies": [
     {
       "path": "/api-proxy",
