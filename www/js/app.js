@@ -94,6 +94,17 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
       }
     })
 
+    .state('camera', {
+      url: '/camera',
+      views: {
+        'tab-issueList': {
+          controller: "CameraService",
+          controllerAs: "cameraService",
+          templateUrl: 'templates/camera.html'
+        }
+      }
+    })
+
     // This is the issue details state.
     /*.state('tab.issueDetails', {
       // We use a parameterized route for this state.
