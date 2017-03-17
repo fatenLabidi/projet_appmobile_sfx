@@ -24,6 +24,12 @@
         <label class="item item-input">
           <input type="text" placeholder="Tag" ng-model="createIssueCtrl.issue.tag" required />
         </label>
+        <label class="item item-input">
+          <input type="text" ng-model="createIssueCtrl.latitude" required ng-hide="true" />
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="createIssueCtrl.longitude" required ng-hide="true"/>
+        </label>
         <div class="list">
           <label label class="item item-input item-select">
             <div class="input-label">Type</div>
