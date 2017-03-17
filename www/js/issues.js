@@ -46,11 +46,12 @@ angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(Aut
 });
 
 
-angular.module('citizen-engagement').controller('NewIssueCtrl', function(geolocation, $log) {
-  var NewIssueCtrl = this;
+angular.module('citizen-engagement').controller('GelocCtrl', function(geolocation, $log) {
+  var gelocCtrl = this;
   geolocation.getLocation().then(function(data){
-    NewIssueCtrl.latitude = data.coords.latitude;
-    NewIssueCtrl.longitude = data.coords.longitude;
+    gelocCtrl.latitude = data.coords.latitude;
+    console.log(gelocCtrl.latitude);
+    gelocCtrl.longitude = data.coords.longitude;
   }).catch(function(err) {
     $log.error('Could not get location because: ' + err.message);
   });
@@ -115,7 +116,7 @@ msg += '<p>{{ record.title }} <b> {{ record.description }} </b></p>';
 
 //controller pour créer un issue
 
-angular.module('citizen-engagement').controller('CreateIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('CreateIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, geolocation, $log, CameraService) {
       var createIssueCtrl = this;
       $http({
       method: 'GET',
@@ -127,6 +128,17 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
             createIssueCtrl.error = 'Could not found type of issue.';
         });
 
+    createIssueCtrl.getLocation = function(){
+      $log.debug('Getting location...');
+
+      geolocation.getLocation().then(function(data){
+        createIssueCtrl.latitude = data.coords.latitude;
+        console.log(createIssueCtrl.latitude);
+        createIssueCtrl.longitude = data.coords.longitude;
+      }).catch(function(err) {
+        $log.error('Could not get location because: ' + err.message);
+      });
+    }
     createIssueCtrl.save = function(){
       createIssueCtrl.issue = {
         issueTypeHref: createIssueCtrl.type,
