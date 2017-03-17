@@ -1,5 +1,8 @@
 angular.module('citizen-engagement').factory('CameraService', function($q) {
   var service = {
+    isSupported: function() {
+      return navigator.camera !== undefined;
+    },
     getPicture: function() {
       var deferred = $q.defer();
       var options = { // Return the raw base64 PNG data

@@ -14,7 +14,11 @@
     <!-- The login form that the citizen must fill. -->
     <form name="createIssueForm">
 
-    <button class="button button-full button-positive" ng-click="CameraService">Photo</button>
+    <button type='button button-positive' ng-click='createIssueCtrl.takePicture()'>
+      Take picture
+    </button>
+    <img ng-if='createIssueCtrl.pictureData' width='100%'
+     ng-src='data:image/png;base64,{{ createIssueCtrl.pictureData }}' />
     <button class="button button-full button-positive" ng-click="createIssueCtrl.getLocation()">Location</button>
       <div class="list">
         <label class="item item-input">
