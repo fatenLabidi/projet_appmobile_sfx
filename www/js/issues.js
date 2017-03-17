@@ -116,7 +116,7 @@ msg += '<p>{{ record.title }} <b> {{ record.description }} </b></p>';
 
 //controller pour créer un issue
 
-angular.module('citizen-engagement').controller('CreateIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, geolocation, $log, CameraService) {
+angular.module('citizen-engagement').controller('CreateIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, geolocation, CameraService, $ionicPopup, $log) {
       var createIssueCtrl = this;
       $http({
       method: 'GET',
@@ -127,7 +127,7 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
         }).catch(function() {
             createIssueCtrl.error = 'Could not found type of issue.';
         });
-
+    
     createIssueCtrl.getLocation = function(){
       $log.debug('Getting location...');
 
@@ -139,6 +139,36 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
         $log.error('Could not get location because: ' + err.message);
       });
     }
+/*
+    createIssueCtrl.takePicture = function() {
+      if (!CameraService.isSupported()) {
+      return $ionicPopup.alert({
+        title: 'Not supported',
+        template: 'You cannot use the camera on this platform'
+      });
+    }
+      CameraService.getPicture().then(function(result) {
+        $log.debug('Picture taken!');
+        createIssueCtrl.pictureData = result;
+      }).catch(function(err) {
+        $log.error('Could not get picture because: ' + err.message);
+      });
+    };*/
+
+      createIssueCtrl.takePicture = function() {
+        if (!CameraService.isSupported()) {
+      return $ionicPopup.alert({
+        title: 'Not supported',
+        template: 'You cannot use the camera on this platform'
+      });
+    }
+    CameraService.getPicture().then(function(result) {
+      $log.debug('Picture taken!');
+      createIssueCtrl.pictureData = result;
+    }).catch(function(err) {
+      $log.error('Could not get picture because: ' + err.message);
+    });
+  };
     createIssueCtrl.save = function(){
       createIssueCtrl.issue = {
         issueTypeHref: createIssueCtrl.type,
