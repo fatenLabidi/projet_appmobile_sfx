@@ -1,8 +1,9 @@
   <ion-header-bar class="bar-dark">
-    <img src="/img/profile.svg" class="profile"/>       
+    <img src="/img/profile.svg" class="profile" ui-sref='profil'/>       
     <h1 class="title titre">CitizenEng.</h1>
-    <img src="/img/filter.svg" class="filter"/>       
+    <img src="/img/filter.svg" class="filter" uisref='#'/>       
   </ion-header-bar>
+
   
 <ion-view view-title="Issue List">
   <ion-content>
@@ -34,12 +35,6 @@
     <p>
       status :<ion-badge item-right>{{ issue.state }}</ion-badge>
     </p>
-
-    <ion-item>
-      <ion-icon name="logo-twitter" item-left></ion-icon>
-      Status
-      <ion-badge item-right color="primary">{{ issue.state }}</ion-badge>
-  </ion-item>
   </div>
 
   <div class="item item-avatar">

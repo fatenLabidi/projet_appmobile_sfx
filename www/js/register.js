@@ -1,4 +1,4 @@
-angular.module('citizen-engagement').controller('RegisterCtrl', function(AuthService, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('RegisterCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
   var registerCtrl = this;
 
   // The $ionicView.beforeEnter event happens every time the screen is displayed.
@@ -25,7 +25,7 @@ angular.module('citizen-engagement').controller('RegisterCtrl', function(AuthSer
     // Make the request to create the user.
     $http({
       method: 'POST',
-      url: '/api-proxy/users',
+      url: apiUrl+'/users',
       data: registerCtrl.user
     }).then(function(res) {
 

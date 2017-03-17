@@ -16,7 +16,7 @@ angular.module('citizen-engagement').factory('AuthService', function(store) {
 
   return service;
 });
-angular.module('citizen-engagement').controller('LoginCtrl', function(AuthService, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('LoginCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
   var loginCtrl = this;
 
   // The $ionicView.beforeEnter event happens every time the screen is displayed.
@@ -41,7 +41,7 @@ angular.module('citizen-engagement').controller('LoginCtrl', function(AuthServic
     // Make the request to retrieve or create the user.
     $http({
       method: 'POST',
-      url: '/api-proxy/auth',
+      url: apiUrl+'/auth',
       data: loginCtrl.user
     }).then(function(res) {
 
@@ -61,11 +61,11 @@ angular.module('citizen-engagement').controller('LoginCtrl', function(AuthServic
       // Go to the issue creation tab.
       $state.go('tab.issueList');
 
-    }).catch(function() {
+    }).catch(function(error) {
 
       // If an error occurs, hide the loading message and show an error message.
       $ionicLoading.hide();
-      loginCtrl.error = 'Could not log in.';
+      loginCtrl.error =JSON.stringify(error);
     });
   };
 });

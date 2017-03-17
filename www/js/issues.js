@@ -1,12 +1,12 @@
 //controller pour get la liste des issues entière ou perso
-angular.module('citizen-engagement').controller('IssueListCtrl', function(AuthService, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('IssueListCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
   var issueListCtrl = this;
   
   // function qui give l'entier de la liste
   issueListCtrl.showAll = function (){
     $http({
       method: 'GET',
-      url: '/api-proxy/issues?include=creator',
+      url: apiUrl+'/issues?include=creator',
     }).then(function(res) {
         issueListCtrl.issues = res.data;
     }).catch(function() {
@@ -18,7 +18,7 @@ angular.module('citizen-engagement').controller('IssueListCtrl', function(AuthSe
   issueListCtrl.showMine = function (){
     $http({
       method: 'GET',
-      url: '/api-proxy/me/issues?include=creator',
+      url: apiUrl+'/me/issues?include=creator',
     }).then(function(res) {
         issueListCtrl.issues = res.data;
     }).catch(function() {
@@ -33,11 +33,11 @@ angular.module('citizen-engagement').controller('IssueListCtrl', function(AuthSe
 
 //controller pour get une seul issue
 
-angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(AuthService, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
   var issueDetailsCtrl = this;
     $http({
       method: 'GET',
-      url: '/api-proxy/issues/{id}',
+      url: apiUrl+'/issues/{id}',
     }).then(function(res) {
         issueDetailsCtrl.issues = res.data;
     }).catch(function() {
@@ -56,7 +56,7 @@ angular.module('citizen-engagement').controller('NewIssueCtrl', function(geoloca
   });
 });
 
-angular.module('citizen-engagement').controller('MapCtrl', function(mapboxSecret, $scope, $http) {
+angular.module('citizen-engagement').controller('MapCtrl', function(mapboxSecret, apiUrl, $scope, $http) {
   var mapCtrl = this; 
   var mapboxMapId = 'mapbox.satellite';  // Use your favorite tileset here mapbox://styles/xavijunior/civccxu4c00aq2jpyjjgqoeyp
   // Build the tile layer URL
@@ -96,7 +96,7 @@ msg += '<p>{{ record.title }} <b> {{ record.description }} </b></p>';
 
     $http({
       method: 'GET',
-      url: '/api-proxy/issues',
+      url: apiUrl+'/issues',
     }).then(function(res) {
         for(var i=0;i<res.data.length;i++){
           var issue = res.data[i];
@@ -114,12 +114,12 @@ msg += '<p>{{ record.title }} <b> {{ record.description }} </b></p>';
 
 
 //controller pour créer un issue
-angular.module('citizen-engagement').controller('CreatIssueCtrl', function(AuthService, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('CreatIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
     
     creatIssueCtrl.save = function(){
         $http({
           method: 'POST',
-          url: '/api-proxy/issues',
+          url: apiUrl+'/issues',
           data: creatIssueCtrl.issue
         }).then(function(res) {
           $state.go('/issueList');
@@ -132,10 +132,10 @@ angular.module('citizen-engagement').controller('CreatIssueCtrl', function(AuthS
 
 
 //controller pour getter  la listes des types
-angular.module('citizen-engagement').controller('GetIssueTypesCtrl', function(AuthService, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('GetIssueTypesCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
     $http({
       method: 'GET',
-      url: '/api-proxy/issueTypes',
+      url: apiUrl+'/issueTypes',
     }).then(function(res) {
          getIssueTypesCtrl.types = res.data;
     }).catch(function() {
