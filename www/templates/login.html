@@ -25,7 +25,7 @@
       <!-- Display an error message here, above the submit button, if an error occurred. -->
       <p ng-if="loginCtrl.error" class="error">{{ loginCtrl.error }}</p>
 
-      <!--
+      <!--g
         The submit button.
         The "ng-click" directive indicates which scope function to call when the form is submitted.
         The "ng-disabled" directive is used to disable the button if the form is invalid (i.e. the first name or last name is missing).
@@ -33,8 +33,8 @@
 
       
     </form> 
-      <button class="button button-full button-positive" ng-click="loginCtrl.logIn()" ng-disabled="loginForm.$invalid">Log in</button>
-      <button class="button button-full button-positive" ui-sref="registerCtrl.register()">Register</button>
+      <button class="button button-full button-light" ng-click="loginCtrl.logIn()" ng-disabled="loginForm.$invalid">Log in</button>
+      <button class="button button-full button-light" ui-sref="register">Register</button>
     </form>
 
   </ion-content>

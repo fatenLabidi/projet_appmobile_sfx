@@ -7,10 +7,10 @@
 <ion-view view-title="Issue List">
   <ion-content>
     <p class="issueListTitle">
-      <button class="button button-small button-outline button-positive" id="allIssue" ng-click="issueListCtrl.showAll()">
+      <button class="button button-small button-outline button-dark" id="allIssue" ng-click="issueListCtrl.showAll()">
         <b>All issues</b>
       </button>
-      <button class="button button-small button-outline button-positive" id="myIssue" ng-click="issueListCtrl.showMine()" >
+      <button class="button button-small button-outline button-dark" id="myIssue" ng-click="issueListCtrl.showMine()" >
         <b>My issues</b>
       </button>
     </p>
@@ -32,8 +32,14 @@
       {{ issue.description }}
     </p>
     <p>
-      status : <b> {{ issue.state }}</b>
+      status :<ion-badge item-right>{{ issue.state }}</ion-badge>
     </p>
+
+    <ion-item>
+      <ion-icon name="logo-twitter" item-left></ion-icon>
+      Status
+      <ion-badge item-right color="primary">{{ issue.state }}</ion-badge>
+  </ion-item>
   </div>
 
   <div class="item item-avatar">
