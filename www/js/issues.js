@@ -129,14 +129,22 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
 
     createIssueCtrl.save = function(){
       createIssueCtrl.issue = {
-        issueTypeHref: createIssueCtrl.type
+        issueTypeHref: createIssueCtrl.type,
+        "location": {
+        "coordinates": [
+          6.6398,
+          46.7678
+        ],
+        "type": "Point"
+        },
+        "state": "new",
       };
       $http({
         method: 'POST',
         url: apiUrl+'/issues',
         data: createIssueCtrl.issue
       }).then(function(res) {
-        $state.go('/issueList');
+        $state.go('tab.issueList');
       }).catch(function() {
         createIssueCtrl.error = 'Could not create an issue.';
       });
