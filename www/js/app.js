@@ -49,7 +49,7 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
       // The URL (here "/newIssue") is used only internally with Ionic; you never see it displayed anywhere.
       // In an Angular website, it would be the URL you need to go to with your browser to enter this state.
       url: '/createIssue',
-      controller: 'CreateIssue',
+      controller: 'CreateIssueCtrl',
       controllerAs: 'createIssueCtrl',
       templateUrl: 'templates/createIssue.html'
     })
