@@ -111,7 +111,7 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
 
   // Define the default state (i.e. the first screen displayed when the app opens).
   $urlRouterProvider.otherwise(function($injector) {
-    $injector.get('$state').go('tab.issueList'); // Go to the new issue tab by default.
+    $injector.get('$state').go('login'); // Go to the new issue tab by default.
   });
 });
 
