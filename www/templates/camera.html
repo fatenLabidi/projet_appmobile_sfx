@@ -1,0 +1,5 @@
+<button type='button button-positive' ng-click='CameraService.takePicture()'>
+  Take picture
+</button>
+<img ng-if='CameraService.pictureData' width='100%'
+     ng-src='data:image/png;base64,{{ CameraService.pictureData }}' />
