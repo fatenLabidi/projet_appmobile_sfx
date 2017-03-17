@@ -114,31 +114,32 @@ msg += '<p>{{ record.title }} <b> {{ record.description }} </b></p>';
 
 
 //controller pour créer un issue
-angular.module('citizen-engagement').controller('CreatIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
-    
-    creatIssueCtrl.save = function(){
-        $http({
-          method: 'POST',
-          url: apiUrl+'/issues',
-          data: creatIssueCtrl.issue
-        }).then(function(res) {
-          $state.go('/issueList');
-        }).catch(function() {
-          registerCtrl.error = 'Could not create an issue.';
-        });
-    }
-    
-});
 
-
-//controller pour getter  la listes des types
-angular.module('citizen-engagement').controller('GetIssueTypesCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
-    $http({
+angular.module('citizen-engagement').controller('CreateIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+      var createIssueCtrl = this;
+      $http({
       method: 'GET',
       url: apiUrl+'/issueTypes',
-    }).then(function(res) {
-         getIssueTypesCtrl.types = res.data;
-    }).catch(function() {
-            registerCtrl.error = 'Could not found type of issue.';
-    });
+
+        }).then(function(res) {
+            createIssueCtrl.types = res.data;
+        }).catch(function() {
+            createIssueCtrl.error = 'Could not found type of issue.';
+        });
+
+    createIssueCtrl.save = function(){
+      createIssueCtrl.issue = {
+        issueTypeHref: createIssueCtrl.type
+      };
+      $http({
+        method: 'POST',
+        url: apiUrl+'/issues',
+        data: createIssueCtrl.issue
+      }).then(function(res) {
+        $state.go('/issueList');
+      }).catch(function() {
+        createIssueCtrl.error = 'Could not create an issue.';
+      });
+    }
 });
+

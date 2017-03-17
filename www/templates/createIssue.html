@@ -14,7 +14,8 @@
     <!-- The login form that the citizen must fill. -->
     <form name="createIssueForm">
 
-    <button class="button button-full button-positive" ng-click="" ng-disabled="registerForm.$invalid">Photo</button>
+    <button class="button button-full button-positive" ng-click="">Photo</button>
+    <button class="button button-full button-positive" ng-click="">Location</button>
       <div class="list">
         <label class="item item-input">
           <!-- Note the required="required" attribute issue for validation. -->
@@ -26,9 +27,9 @@
         <div class="list">
           <label label class="item item-input item-select">
             <div class="input-label">Type</div>
-            <select name="typesList" ng-model="createIssueCtrl" size="1">
+            <select name="typesList" ng-model="createIssueCtrl.type" size="1">
               <option value="Choose a type" selected="true">Choose a type</option>
-              <option value={{type.name}} ng-repeat="type in getIssueTypesCtrl.types">{{type.name}}</ion-option>
+              <option value={{type.href}} ng-repeat="type in createIssueCtrl.types">{{type.name}}</option>
             </select>
           </label>
         </item>
@@ -42,7 +43,7 @@
         The "ng-click" directive indicates which scope function to call when the form is submitted.
         The "ng-disabled" directive is used to disable the button if the form is invalid (i.e. the first name or last name is missing).
       -->
-      <button class="button button-full button-positive" ng-click="createIssueCtrl.save()" ng-disabled="registerForm.$invalid">Save</button>
+      <button class="button button-full button-positive" ng-click="createIssueCtrl.save()" ng-disabled="createIssueForm.$invalid">Save</button>
     </form>
   </ion-content>
 </ion-view>
