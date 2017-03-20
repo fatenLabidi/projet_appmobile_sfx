@@ -14,14 +14,22 @@
 
     <div class="card">
         <div class="item item-text-wrap">
-         <p style="font-weight:bold;"> Description :  </p>
-         <p> {{ issueDetailsCtrl.issue.description }} </p>
+         <p style="font-weight:bold;"> Creator :  </p>
+         <div class="row">
+           <div class="col-30">
+         <p><img style="max-width: 40px;max-height: 40px;height: 100%;border-radius: 50%;"src="/img/{{issueDetailsCtrl.issue.creator.name}}.jpg">
+            </div>
+            <div class="col">
+               {{ issueDetailsCtrl.issue.creator.firstname }} 
+               {{ issueDetailsCtrl.issue.creator.lastname }} (<span style="font-style: italic;">{{ issueDetailsCtrl.issue.creator.name }}</span>) </p>
+            </div>
         </div>
     </div>
+
     <div class="card">
         <div class="item item-text-wrap">
-         <p style="font-weight:bold;"> Creator :  </p>
-         <p><img style="max-width: 40px;max-height: 40px;width: 100%;height: 100%;border-radius: 50%;"src="/img/{{issueDetailsCtrl.issue.creator.name}}.jpg"> {{ issueDetailsCtrl.issue.creator.firstname }} {{ issueDetailsCtrl.issue.creator.lastname }} (<span style="font-style: italic;">{{ issueDetailsCtrl.issue.creator.name }}</span>) </p>
+         <p style="font-weight:bold;"> Description :  </p>
+         <p> {{ issueDetailsCtrl.issue.description }} </p>
         </div>
     </div>
 
@@ -43,10 +51,36 @@
 
     <div class="card">
         <div class="item item-text-wrap">
-         <p style="font-weight:bold;"> Comments :  </p>
-         <p><b>{{ issueDetailsCtrl.issue.comment[0].creator }} </b> : {{ issueDetailsCtrl.issue.comment[0].body }}</p>
-         <p><b>{{ issueDetailsCtrl.issue.comment[1].creator }} </b> : {{ issueDetailsCtrl.issue.comment[2].body }}</p>
-         <p class="comm"> <a class="comm" href=""> ... </a></p>
+          <p style="font-weight:bold;"> Comments :  </p>
+          <div class="row">
+            <div class="col-35">
+              <img style="max-width: 40px;max-height: 40px;height: 100%;border-radius: 50%;"src="/img/{{issueDetailsCtrl.comments[0].author.name}}.jpg">
+            </div>
+            <div class="col">
+              <span><b>{{ issueDetailsCtrl.comments[0].author.name }} </b> : {{ issueDetailsCtrl.comments[0].text }}</span>
+            </div>
+          </div>
+          <div class=" item item-text-wrap row" style="border-bottom:0;">
+            <div class="col-35">
+              <img style="max-width: 40px;max-height: 40px;height: 100%;border-radius: 50%;"src="/img/{{issueDetailsCtrl.comments[1].author.name}}.jpg">
+            </div>
+            <div class="col">
+              <span><b>{{ issueDetailsCtrl.comments[1].author.name }} </b> : {{ issueDetailsCtrl.comments[1].text }}</span>
+            </div>
+          </div>
+          <div class="comm">
+            <button class="button comm button-clear button-balanced" ui-sref='comments({ issueId: issueDetailsCtrl.issue.id })' ng-click="commentCtrl">
+            ...
+            </button>
+          </div>
+          <div class="item item-text-wrap">
+            <form>
+              <div class="item item-input col-90">
+                <p><input type="text" placeholder="Let's comment" ng-model="issueDetailsCtrl.comment.text" required style="padding-right:0px;font-size:12px;" /></p></br>
+                <p><button type="button" class="button test button-small button-balanced col" ng-click="issueDetailsCtrl.addComments()" ng-disabled="issueDetailsCtrl.$invalid"><img src="img/send.svg" alt="" class="send"></button></p> 
+              </div>
+            </form>
+          </div>
         </div>
     </div>
 
