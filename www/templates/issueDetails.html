@@ -1,8 +1,7 @@
-<ion-header-bar class="bar-dark">
-    <img src="/img/back.svg" class="profile"/>       
-    <h1 class="title titre">CitizenEng.</h1>    
+<ion-header-bar class="bar bar-header bar-dark">
+  <button class="button button-icon icon ion-chevron-left" ui-sref='tab.issueList'></button>
+  <div class="title titre">CitizenEng.</div>
 </ion-header-bar>
-
 
 <ion-view view-title="issueDetails">
   <ion-content>
@@ -42,7 +41,7 @@
       </div>
     </div>
 
-    <button class="button button-full button-positive" ng-click="issueDetails.modify()" ng-disabled="issueDetails.$invalid" ng-hide="issueDetails.edit">Edit
+    <button class="button button-full button-light" ng-click="issueDetails.modify()" ng-disabled="issueDetails.$invalid" ng-hide="issueDetails.edit">Edit
     </button>
 
   </ion-content>

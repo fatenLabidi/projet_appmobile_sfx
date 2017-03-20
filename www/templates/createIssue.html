@@ -1,10 +1,16 @@
-<ion-view view-title="Citizen Engagement">
-  <ion-content class="padding">
+    <ion-header-bar class="bar bar-header bar-dark">
+      <button class="button button-icon icon ion-person" ui-sref='profil'></button>
+      <div class="title titre">CitizenEng.</div>
+      <button class="button button-icon icon ion-search"></button>
+    </ion-header-bar>
 
     <!-- A banner. Choose an image and save it as www/img/banner.jpg -->
     <!--<img src="img/banner.jpg" width="100%" alt="Citizen Engagement" />-->
 
     <!-- A short welcome message. -->
+    <ion-view view-title="Profil">
+    <ion-content>
+   
     <div class="card">
       <div class="item item-text-wrap">
         Create a new issue ...
@@ -14,7 +20,7 @@
     <!-- The login form that the citizen must fill. -->
     <form name="createIssueForm">
 
-    <button type='button button-positive' ng-click='createIssueCtrl.takePicture()'>
+    <button class='button button-dark' ng-click='createIssueCtrl.takePicture()'>
       Take picture
     </button>
     <img ng-if='createIssueCtrl.pictureData' width='100%'
@@ -28,11 +34,11 @@
         <label class="item item-input">
           <input type="text" placeholder="Tag" ng-model="createIssueCtrl.issue.tag" required />
         </label>
-        <label class="item item-input">
-          <input type="text" ng-model="createIssueCtrl.latitude" required ng-hide="true" />
+        <label class="item item-input" ng-hide="true">
+          <input type="text" ng-model="createIssueCtrl.latitude" required/>
         </label>
-        <label class="item item-input">
-          <input type="text" ng-model="createIssueCtrl.longitude" required ng-hide="true"/>
+        <label class="item item-input" ng-hide="true">
+          <input type="text" ng-model="createIssueCtrl.longitude" required/>
         </label>
         <div class="list">
           <label label class="item item-input item-select">
