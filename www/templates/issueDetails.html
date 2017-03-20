@@ -1,8 +1,7 @@
-<ion-header-bar class="bar-dark">
-    <img src="/img/back.svg" class="profile"/>       
-    <h1 class="title titre">CitizenEng.</h1>    
+<ion-header-bar class="bar bar-header bar-dark">
+  <button class="button button-icon icon ion-chevron-left" ui-sref='tab.issueList'></button>
+  <div class="title titre">CitizenEng.</div>
 </ion-header-bar>
-
 
 <ion-view view-title="issueDetails">
   <ion-content>
@@ -33,7 +32,6 @@
         <p> {{ issueDetailsCtrl.issue.state }} </p>
         </div>
     </div>
-
     <div class="card">
         <div class="item item-text-wrap">
          <p style="font-weight:bold;"> Tags :  </p>
@@ -49,6 +47,7 @@
          <p class="comm"> <a class="comm" href=""> ... </a></p>
         </div>
     </div>
+
 
   </ion-content>
 </ion-view>
