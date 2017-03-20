@@ -33,13 +33,14 @@ angular.module('citizen-engagement').controller('IssueListCtrl', function(AuthSe
 
 //controller pour get une seul issue
 
-angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, $stateParams) {
   var issueDetailsCtrl = this;
     $http({
       method: 'GET',
-      url: apiUrl+'/issues/{id}',
+      url: apiUrl+'/issues/'+ $stateParams.issueId,
     }).then(function(res) {
-        issueDetailsCtrl.issues = res.data;
+        issueDetailsCtrl.issue = res.data;
+        console.log($stateParams.issueId);
     }).catch(function() {
       issueDetailsCtrl.error = 'Could not found issue';
     });

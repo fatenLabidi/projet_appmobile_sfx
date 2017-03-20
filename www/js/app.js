@@ -39,7 +39,7 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
     })
 
     .state('issueDetails', {
-      url: '/issueDetails',
+      url: '/issueDetails/:issueId',
       controller: 'IssueDetailsCtrl',
       controllerAs: 'issueDetailsCtrl',
       templateUrl: 'templates/issueDetails.html'
