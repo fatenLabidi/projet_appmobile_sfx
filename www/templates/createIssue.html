@@ -1,10 +1,14 @@
-<ion-view view-title="Citizen Engagement">
-  <ion-content class="padding">
+<ion-header-bar class="bar bar-header bar-dark">
+  <button class="button button-icon icon ion-chevron-left" ui-sref='tab.issueList'></button>
+  <div class="title titre">CitizenEng.</div>
+</ion-header-bar>
 
     <!-- A banner. Choose an image and save it as www/img/banner.jpg -->
     <!--<img src="img/banner.jpg" width="100%" alt="Citizen Engagement" />-->
 
     <!-- A short welcome message. -->
+    <ion-view view-title="createIssue">
+  <ion-content>
     <div class="card">
       <div class="item item-text-wrap">
         Create a new issue ...
@@ -12,14 +16,12 @@
     </div>
 
     <!-- The login form that the citizen must fill. -->
-    <form name="createIssueForm">
+    <form novalidate name="createIssueForm">
 
-    <button type='button button-positive' ng-click='createIssueCtrl.takePicture()'>
-      Take picture
-    </button>
+    <button class='button button-full button-dark icon ion-camera' ng-click='createIssueCtrl.takePicture()'></button>
     <img ng-if='createIssueCtrl.pictureData' width='100%'
      ng-src='data:image/png;base64,{{ createIssueCtrl.pictureData }}' />
-    <button class="button button-full button-positive" ng-click="createIssueCtrl.getLocation()">Location</button>
+    <button class="button button-full button-dark" ng-click="createIssueCtrl.getLocation()">Location</button>
       <div class="list">
         <label class="item item-input">
           <!-- Note the required="required" attribute issue for validation. -->
@@ -28,11 +30,11 @@
         <label class="item item-input">
           <input type="text" placeholder="Tag" ng-model="createIssueCtrl.issue.tag" required />
         </label>
-        <label class="item item-input">
-          <input type="text" ng-model="createIssueCtrl.latitude" required ng-hide="true" />
+        <label class="item item-input" ng-hide="true">
+          <input type="text" ng-model="createIssueCtrl.latitude" required/>
         </label>
-        <label class="item item-input">
-          <input type="text" ng-model="createIssueCtrl.longitude" required ng-hide="true"/>
+        <label class="item item-input" ng-hide="true">
+          <input type="text" ng-model="createIssueCtrl.longitude" required/>
         </label>
         <div class="list">
           <label label class="item item-input item-select">
@@ -53,7 +55,7 @@
         The "ng-click" directive indicates which scope function to call when the form is submitted.
         The "ng-disabled" directive is used to disable the button if the form is invalid (i.e. the first name or last name is missing).
       -->
-      <button class="button button-full button-positive" ng-click="createIssueCtrl.save()" ng-disabled="createIssueForm.$invalid">Save</button>
+      <button class="button button-full button-light" ng-click="createIssueCtrl.save()" ng-disabled="createIssueForm.$invalid">Save</button>
     </form>
   </ion-content>
 </ion-view>

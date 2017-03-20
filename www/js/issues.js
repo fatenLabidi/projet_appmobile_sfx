@@ -123,7 +123,7 @@ angular.module('citizen-engagement').controller('MapCtrl', function(mapboxSecret
 
 //controller pour créer un issue
 
-angular.module('citizen-engagement').controller('CreateIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, geolocation, CameraService, $ionicPopup, $log) {
+angular.module('citizen-engagement').controller('CreateIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, geolocation, CameraService, $ionicPopup, $log, $q, qimgSecret, qimgUrl) {
       var createIssueCtrl = this;
       $http({
       method: 'GET',
@@ -161,21 +161,48 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
       });
     };*/
 
-      createIssueCtrl.takePicture = function() {
+    createIssueCtrl.takePicture = function() {
         if (!CameraService.isSupported()) {
       return $ionicPopup.alert({
         title: 'Not supported',
         template: 'You cannot use the camera on this platform'
       });
     }
-    CameraService.getPicture().then(function(result) {
+    CameraService.getPicture({ quality: 50 }).then(function(result) {
       $log.debug('Picture taken!');
       createIssueCtrl.pictureData = result;
     }).catch(function(err) {
       $log.error('Could not get picture because: ' + err.message);
     });
   };
-    createIssueCtrl.save = function(){
+
+    createIssueCtrl.createIssue = function() {
+      return postImage().then(save);
+    };
+
+    function postImage() {
+      if (!createIssueCtrl.pictureData) {
+        // If no image was taken, return a promise resolved with "null"
+        return $q.when(null);
+      }
+
+      // Upload the image to the qimg API
+      return $http({
+        method: 'POST',
+        url: qimgUrl + '/images',
+        headers: {
+          Authorization: 'Bearer ' + qimgSecret
+        },
+        data: {
+          data: createIssueCtrl.pictureData
+        }
+      });
+    }
+    createIssueCtrl.save = function(imageRes){
+      // Use the image URL from the qimg API response (if any)
+      if (imageRes) {
+        createIssueCtrl.issue.imageUrl = imageRes.data.url;
+      }
       createIssueCtrl.issue = {
         issueTypeHref: createIssueCtrl.type,
         "location": {
@@ -183,9 +210,11 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
           createIssueCtrl.latitude,
           createIssueCtrl.longitude
         ],
+        "imageUrl": createIssueCtrl.issue.imageUrl,
         "type": "Point"
         },
         "state": "new",
+        "description": createIssueCtrl.issue.description,
       };
       $http({
         method: 'POST',
@@ -196,7 +225,6 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
       }).catch(function() {
         createIssueCtrl.error = 'Could not create an issue.';
       });
-      console.log(createIssueCtrl.issue);
     }
 });
 
