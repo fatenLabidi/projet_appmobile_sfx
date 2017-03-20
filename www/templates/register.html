@@ -43,6 +43,9 @@
         The "ng-disabled" directive is used to disable the button if the form is invalid (i.e. the first name or last name is missing).
       -->
       <button class="button button-full button-dark" ng-click="registerCtrl.register()" ng-disabled="registerForm.$invalid">Register</button>
+      <button class="button button-outline button-stable" ui-sref="login">
+        login
+      </button>
     </form>
   </ion-content>
 </ion-view>
