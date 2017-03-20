@@ -96,7 +96,7 @@ angular.module('citizen-engagement').controller('MapCtrl', function(mapboxSecret
 
 //controller pour créer un issue
 
-angular.module('citizen-engagement').controller('CreateIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, geolocation, CameraService, $ionicPopup, $log) {
+angular.module('citizen-engagement').controller('CreateIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, geolocation, CameraService, $ionicPopup, $log, $q, qimgSecret, qimgUrl) {
       var createIssueCtrl = this;
       $http({
       method: 'GET',
