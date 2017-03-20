@@ -38,6 +38,13 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
       templateUrl: 'templates/login.html'
     })
 
+    .state('issueDetails', {
+      url: '/issueDetails',
+      controller: 'IssueDetailsCtrl',
+      controllerAs: 'issueDetailsCtrl',
+      templateUrl: 'templates/issueDetails.html'
+    })
+
     .state('register', {
       url: '/register',
       controller: 'RegisterCtrl',
