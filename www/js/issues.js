@@ -149,12 +149,12 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
     });
   };
 
-    newIssueCtrl.createIssue = function() {
+    createIssueCtrl.createIssue = function() {
       return postImage().then(save);
     };
 
     function postImage() {
-      if (!newIssueCtrl.pictureData) {
+      if (!createIssueCtrl.pictureData) {
         // If no image was taken, return a promise resolved with "null"
         return $q.when(null);
       }
@@ -167,14 +167,14 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
           Authorization: 'Bearer ' + qimgSecret
         },
         data: {
-          data: newIssueCtrl.pictureData
+          data: createIssueCtrl.pictureData
         }
       });
     }
     createIssueCtrl.save = function(){
       // Use the image URL from the qimg API response (if any)
       if (imageRes) {
-        newIssueCtrl.issue.imageUrl = imageRes.data.url;
+        createIssueCtrl.issue.imageUrl = imageRes.data.url;
       }
       createIssueCtrl.issue = {
         issueTypeHref: createIssueCtrl.type,
