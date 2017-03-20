@@ -9,7 +9,7 @@
       Issue Details
     </h1>
 
-    <img src="{{ issueDetailsCtrl.issue.imageUrl }}" style="width:100%;left:0;position:relativ;"/>
+    <img ng-src="{{ issueDetailsCtrl.issue.imageUrl }}" style="width:100%;left:0;position:relativ;"/>
 
     <div class="card">
         <div class="item item-text-wrap">
@@ -20,7 +20,7 @@
     <div class="card">
         <div class="item item-text-wrap">
          <p style="font-weight:bold;"> Creator :  </p>
-         <p><img style="max-width: 40px;max-height: 40px;width: 100%;height: 100%;border-radius: 50%;"src="/img/{{issueDetailsCtrl.issue.creator.name}}.jpg"> {{ issueDetailsCtrl.issue.creator.firstname }} {{ issueDetailsCtrl.issue.creator.lastname }} (<span style="font-style: italic;">{{ issueDetailsCtrl.issue.creator.name }}</span>) </p>
+         <p><img style="max-width: 40px;max-height: 40px;width: 100%;height: 100%;border-radius: 50%;" ng-src="/img/{{issueDetailsCtrl.issue.creator.name}}.jpg"> {{ issueDetailsCtrl.issue.creator.firstname }} {{ issueDetailsCtrl.issue.creator.lastname }} (<span style="font-style: italic;">{{ issueDetailsCtrl.issue.creator.name }}</span>) </p>
         </div>
     </div>
 
