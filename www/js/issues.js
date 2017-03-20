@@ -183,6 +183,7 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
           createIssueCtrl.latitude,
           createIssueCtrl.longitude
         ],
+        "imageUrl": createIssueCtrl.issue.imageUrl,
         "type": "Point"
         },
         "state": "new",
