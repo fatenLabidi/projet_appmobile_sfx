@@ -60,6 +60,13 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
       templateUrl: 'templates/register.html'
     })
 
+    .state('comments', {
+      url: '/comments/:issueId',
+      controller: 'CommentCtrl',
+      controllerAs: 'commentCtrl',
+      templateUrl: 'templates/comments.html'
+    })
+
     .state('createIssue', {
       // The URL (here "/newIssue") is used only internally with Ionic; you never see it displayed anywhere.
       // In an Angular website, it would be the URL you need to go to with your browser to enter this state.

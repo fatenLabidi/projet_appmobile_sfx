@@ -29,7 +29,7 @@
 
   <div class="item item-body">
     {{issue.type}}
-    <img class="full-image" src="{{issue.imageUrl}}">
+    <img class="full-image" ng-src="{{issue.imageUrl}}">
     <p style="font-style: italic;">
       {{ issue.description }}
     </p>
@@ -39,7 +39,7 @@
   </div>
 
   <div class="item item-avatar">
-    <img src="/img/{{issue.creator.name}}.jpg">
+    <img ng-src="/img/{{issue.creator.name}}.jpg">
     <h2><b>{{ issue.creator.firstname }} {{ issue.creator.lastname }}</b> ({{issue.creator.name}})</h2>
     <p>
     {{issue.createdAt | date: 'dd/MM/yyyy, HH:mm'}}

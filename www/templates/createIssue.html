@@ -31,15 +31,12 @@
           <input type="text" placeholder="Tag" ng-model="createIssueCtrl.issue.tag" required />
         </label>
         <label class="item item-input" ng-hide="true">
-          <input type="text" ng-model="createIssueCtrl.latitude" required/>
-        </label>
-        <label class="item item-input" ng-hide="true">
-          <input type="text" ng-model="createIssueCtrl.longitude" required/>
+          <input type="text" ng-model="createIssueCtrl.issue.location" required/>
         </label>
         <div class="list">
           <label label class="item item-input item-select">
             <div class="input-label">Type</div>
-            <select name="typesList" ng-model="createIssueCtrl.type" size="1">
+            <select name="typesList" ng-model="createIssueCtrl.issue.issueTypeHref" size="1">
               <option value="Choose a type" selected="true">Choose a type</option>
               <option value={{type.href}} ng-repeat="type in createIssueCtrl.types">{{type.name}}</option>
             </select>
@@ -48,14 +45,15 @@
       </div>
 
       <!-- Display an error message here, above the submit button, if an error occurred. -->
-      <p ng-if="" class="error">{{ createIssueCtrl.error }}</p>
+      <p ng-if="createIssueCtrl.error" class="error">{{ createIssueCtrl.error }}</p>
+
 
       <!--
         The submit button.
         The "ng-click" directive indicates which scope function to call when the form is submitted.
         The "ng-disabled" directive is used to disable the button if the form is invalid (i.e. the first name or last name is missing).
       -->
-      <button class="button button-full button-light" ng-click="createIssueCtrl.save()" ng-disabled="createIssueForm.$invalid">Save</button>
+      <button class="button button-full button-light" ng-click="createIssueCtrl.createIssue()" ng-disabled="createIssueForm.$invalid">Save</button>
     </form>
   </ion-content>
 </ion-view>

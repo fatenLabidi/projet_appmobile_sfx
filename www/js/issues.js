@@ -44,6 +44,33 @@ angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(Aut
     }).catch(function() {
       issueDetailsCtrl.error = 'Could not found issue';
     });
+
+    $http({
+      method: 'GET',
+      url: apiUrl+'/issues/'+ $stateParams.issueId +'/comments',
+      params: {pageSize: 2, include:'author'}
+    }).then(function(res) {
+      issueDetailsCtrl.comments = res.data;
+    }).catch(function() {
+      issueDetailsCtrl.error = 'Could not found issue';
+    });
+  
+    issueDetailsCtrl.comment = {
+    };
+    issueDetailsCtrl.addComments = function(){
+      console.log("ello")
+
+      $http({
+        method: 'POST',
+        url: apiUrl+'/issues/'+ $stateParams.issueId +'/comments',
+        data: issueDetailsCtrl.comment
+      }).then(function(res) {  
+         $state.go('issueDetails');
+      }).catch(function() {
+        issueDetailsCtrl.error = 'Could not add an comment.';
+      });
+    };
+
 });
 
 
@@ -98,6 +125,9 @@ angular.module('citizen-engagement').controller('MapCtrl', function(mapboxSecret
 
 angular.module('citizen-engagement').controller('CreateIssueCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, geolocation, CameraService, $ionicPopup, $log, $q, qimgSecret, qimgUrl) {
       var createIssueCtrl = this;
+
+      createIssueCtrl.issue = {};
+
       $http({
       method: 'GET',
       url: apiUrl+'/issueTypes',
@@ -112,8 +142,13 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
       $log.debug('Getting location...');
 
       geolocation.getLocation().then(function(data){
-        createIssueCtrl.latitude = data.coords.latitude;
-        createIssueCtrl.longitude = data.coords.longitude;
+        createIssueCtrl.issue.location = {
+          "coordinates": [
+            data.coords.latitude,
+            data.coords.longitude
+          ],
+          "type": "Point"
+        };
       }).catch(function(err) {
         $log.error('Could not get location because: ' + err.message);
       });
@@ -150,7 +185,7 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
   };
 
     createIssueCtrl.createIssue = function() {
-      return postImage().then(save);
+      return $q.when().then(postImage).then(createIssueCtrl.save);
     };
 
     function postImage() {
@@ -176,26 +211,49 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
       if (imageRes) {
         createIssueCtrl.issue.imageUrl = imageRes.data.url;
       }
-      createIssueCtrl.issue = {
-        issueTypeHref: createIssueCtrl.type,
-        "location": {
-        "coordinates": [
-          createIssueCtrl.latitude,
-          createIssueCtrl.longitude
-        ],
-        "type": "Point"
-        },
-        "state": "new",
-      };
+
       $http({
         method: 'POST',
         url: apiUrl+'/issues',
         data: createIssueCtrl.issue
       }).then(function(res) {
         $state.go('tab.issueList');
-      }).catch(function() {
-        createIssueCtrl.error = 'Could not create an issue.';
+      }).catch(function(err) {
+        createIssueCtrl.error = "Could not create issue";
       });
     }
 });
+
+
+
+// ctrl pour les comments get les comment et create un comment
+angular.module('citizen-engagement').controller('CommentCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, $stateParams) {
+  var commentCtrl = this;
+    $http({
+      method: 'GET',
+      url: apiUrl+'/issues/'+ $stateParams.issueId +'/comments',
+      params: {include:'author'}
+    }).then(function(res) {
+      commentCtrl.comments = res.data;
+    }).catch(function() {
+      commentCtrl.error = 'Could not found issue';
+    });
+
+    commentCtrl.comment = {
+    };
+
+    commentCtrl.addComments = function(){
+      $http({
+        method: 'POST',
+        url: apiUrl+'/issues/'+ $stateParams.issueId +'/comments',
+        data: commentCtrl.comment
+      }).then(function(res) {
+         $state.go('comments');
+      }).catch(function() {
+        commentCtrl.error = 'Could not add an comment.';
+      });
+    };
+
+});
+
 
