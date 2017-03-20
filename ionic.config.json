@@ -7,8 +7,8 @@
       "proxyUrl": "https://comem-citizen-engagement-2017f.herokuapp.com/api"
     },
     {
-	  "path": "/qimg-api-proxy",
-	  "proxyUrl": "https://comem-qimg.herokuapp.com/api"
-	}
+      "path": "/qimg-api-proxy",
+      "proxyUrl": "https://comem-qimg.herokuapp.com/api"
+    }
   ]
 }
