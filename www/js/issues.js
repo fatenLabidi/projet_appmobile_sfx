@@ -37,7 +37,7 @@ angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(Aut
   var issueDetailsCtrl = this;
     $http({
       method: 'GET',
-      url: apiUrl+'/issues/'+ $stateParams.issueId,
+      url: apiUrl+'/issues/'+ $stateParams.issueId +"?include=creator",
     }).then(function(res) {
         issueDetailsCtrl.issue = res.data;
         console.log($stateParams.issueId);
@@ -74,27 +74,6 @@ angular.module('citizen-engagement').controller('MapCtrl', function(mapboxSecret
     lng: 6.647568,
     zoom: 33
   };
-
-  var record = {
-    title: 'cool',
-    description: 'raul'
-  };
-
-var msg = '<p>Hello mon gars</p>';
-msg += '<p>{{ record.title }} <b> {{ record.description }} </b></p>';
-
-  mapCtrl.markers.push({
-    lat: 46.78149,
-    lng: 6.647568,
-    message: msg,
-      getMessageScope: function() {
-        var scope = $scope.$new();
-        scope.record = record;
-        return scope;
-      }
-  });
-
-
 
     $http({
       method: 'GET',

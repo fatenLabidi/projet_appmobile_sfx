@@ -18,6 +18,20 @@
 
  }
 
+ a{
+     text-decoration:none;
+ }
+
+ a:hover{
+          text-decoration:none;
+ }
+
+ .comm{
+     text-align:center;
+     font-style: bold;
+     color:green;
+ }
+
 
  .titre{
      font-size: 23px;
