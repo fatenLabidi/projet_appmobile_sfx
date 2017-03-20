@@ -44,6 +44,9 @@
     <p>
     {{issue.createdAt | date: 'dd/MM/yyyy, HH:mm'}}
     </p>
+    <button class="button button-small button-outline button-dark" ui-sref='issueDetails({ issueId: issue.id })'  ng-click="IssueDetailsCtrl" >
+        <b>Show more</b>
+      </button>
   </div>
 
 </div>

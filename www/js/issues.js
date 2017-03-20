@@ -33,13 +33,14 @@ angular.module('citizen-engagement').controller('IssueListCtrl', function(AuthSe
 
 //controller pour get une seul issue
 
-angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, $stateParams) {
   var issueDetailsCtrl = this;
     $http({
       method: 'GET',
-      url: apiUrl+'/issues/{id}',
+      url: apiUrl+'/issues/'+ $stateParams.issueId,
     }).then(function(res) {
-        issueDetailsCtrl.issues = res.data;
+        issueDetailsCtrl.issue = res.data;
+        console.log($stateParams.issueId);
     }).catch(function() {
       issueDetailsCtrl.error = 'Could not found issue';
     });
@@ -133,7 +134,6 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
 
       geolocation.getLocation().then(function(data){
         createIssueCtrl.latitude = data.coords.latitude;
-        console.log(createIssueCtrl.latitude);
         createIssueCtrl.longitude = data.coords.longitude;
       }).catch(function(err) {
         $log.error('Could not get location because: ' + err.message);
@@ -174,8 +174,8 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
         issueTypeHref: createIssueCtrl.type,
         "location": {
         "coordinates": [
-          6.6398,
-          46.7678
+          createIssueCtrl.latitude,
+          createIssueCtrl.longitude
         ],
         "type": "Point"
         },
@@ -190,6 +190,7 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
       }).catch(function() {
         createIssueCtrl.error = 'Could not create an issue.';
       });
+      console.log(createIssueCtrl.issue);
     }
 });
 
