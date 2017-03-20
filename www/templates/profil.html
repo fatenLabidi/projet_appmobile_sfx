@@ -1,9 +1,9 @@
-<ion-header-bar class="bar-dark">
-    <img src="/img/profile.svg" class="profile"/>       
-    <h1 class="title titre">CitizenEng.</h1>
-    <img src="/img/filter.svg" class="filter"/>       
-  </ion-header-bar>
-  
+<div class="bar bar-header bar-dark">
+  <button class="button button-icon icon ion-chevron-left" ui-sref='tab.issueList'></button>
+  <div class="title titre">CitizenEng.</div>
+  <button class="button button-icon icon ion-gear-a"></button>
+</div>
+
 <ion-view view-title="Profil">
   <ion-content>
     <h1 class="issueListTitle">
@@ -13,38 +13,41 @@
 
     <div>
       <div class="item item-avatar">
+        
+        <img src="/img/{{profilCtrl.user.name}}.jpg">
+
         <h2><b>Username </b></h2>
-        <h3>{{ profilCtrl.user.name }}</h3>
-        <label class="item item-input" ng-show="profilCtrl.edit">
+        <h3 ng-hide="profilCtrl.edit" >{{ profilCtrl.user.name }}</h3>
+        <label class="item item-input" ng-show="profilCtrl.edit" >
           <!-- Note the required="required" attribute used for validation. -->
           <input type="text" placeholder="Username" ng-model="profilCtrl.user.name" />
         </label>
         <h2><b>Firstname </b></h2>
-        <h3>{{profilCtrl.user.firstname}}</h3>
+        <h3 ng-hide="profilCtrl.edit">{{profilCtrl.user.firstname}}</h3>
         <label class="item item-input" ng-show="profilCtrl.edit">
           <!-- Note the required="required" attribute used for validation. -->
           <input type="text" placeholder="Firstname" ng-model="profilCtrl.user.firstname"/>
         </label>
         <h2><b>Lastname </b></h2>
-        <h3>{{profilCtrl.user.lastname}}</h3>
+        <h3 ng-hide="profilCtrl.edit">{{profilCtrl.user.lastname}}</h3>
         <label class="item item-input" ng-show="profilCtrl.edit">
           <!-- Note the required="required" attribute used for validation. -->
           <input type="text" placeholder="Lastname" ng-model="profilCtrl.user.lastname"/>
         </label>
         <h2><b>Phone </b></h2>
-        <h3>{{profilCtrl.user.phone}}</h3>
+        <h3 ng-hide="profilCtrl.edit">{{profilCtrl.user.phone}}</h3>
         <label class="item item-input" ng-show="profilCtrl.edit">
           <!-- Note the required="required" attribute used for validation. -->
           <input type="text" placeholder="Phone" ng-model="profilCtrl.user.phone"/>
         </label>
         <h2><b>Role </b></h2>
-        <h3>{{profilCtrl.user.roles[0]}}</h3>
+        <h3 >{{profilCtrl.user.roles[0]}}</h3>
       </div>
     </div>
 
-    <button class="button button-full button-positive" ng-click="profilCtrl.modify()" ng-disabled="loginForm.$invalid" ng-hide="profilCtrl.edit">Edit
+    <button class="button button-full button-light" ng-click="profilCtrl.modify()" ng-disabled="loginForm.$invalid" ng-hide="profilCtrl.edit">Edit
     </button>
-    <button class="button button-full button-positive" ng-click="profilCtrl.save()" ng-disabled="loginForm.$invalid" ng-show="profilCtrl.edit">Save
+    <button class="button button-full button-light" ng-click="profilCtrl.save()" ng-disabled="loginForm.$invalid" ng-show="profilCtrl.edit">Save
     </button>
   </ion-content>
 </ion-view>
