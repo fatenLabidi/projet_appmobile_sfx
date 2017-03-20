@@ -187,7 +187,7 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
         "type": "Point"
         },
         "state": "new",
-        "description": createIssueCtrl.issue.description
+        "description": createIssueCtrl.issue.description,
       };
       $http({
         method: 'POST',
