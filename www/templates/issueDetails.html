@@ -10,21 +10,7 @@
     </h1>
 
     <img ng-src="{{ issueDetailsCtrl.issue.imageUrl }}" style="width:100%;left:0;position:relativ;"/>
-
-    <div class="card">
-        <div class="item item-text-wrap">
-         <p style="font-weight:bold;"> Creator :  </p>
-         <div class="row">
-           <div class="col-30">
-         <p><img style="max-width: 40px;max-height: 40px;height: 100%;border-radius: 50%;"src="/img/{{issueDetailsCtrl.issue.creator.name}}.jpg">
-            </div>
-            <div class="col">
-               {{ issueDetailsCtrl.issue.creator.firstname }} 
-               {{ issueDetailsCtrl.issue.creator.lastname }} (<span style="font-style: italic;">{{ issueDetailsCtrl.issue.creator.name }}</span>) </p>
-            </div>
-        </div>
-    </div>
-
+    
     <div class="card">
         <div class="item item-text-wrap">
          <p style="font-weight:bold;"> Creator :  </p>

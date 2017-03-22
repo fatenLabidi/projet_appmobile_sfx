@@ -248,7 +248,6 @@ angular.module('citizen-engagement').controller('CommentCtrl', function(AuthServ
         url: apiUrl+'/issues/'+ $stateParams.issueId +'/comments',
         data: commentCtrl.comment
       }).then(function(res) {
-         $state.go('comments');
       }).catch(function() {
         commentCtrl.error = 'Could not add an comment.';
       });
