@@ -1,33 +1,29 @@
 <ion-header-bar class="bar-dark">
-    <img src="/img/back.svg" class="profile"/>       
-    <h1 class="title titre">CitizenEng.</h1>    
+    <button class="button button-icon icon ion-chevron-left" ui-sref='issueDetails'></button>      
+    <h1 class="title titre">CitizenEng.</h1>      
 </ion-header-bar>
 
+<div class="bar bar-subheader">
+      <h2 class="title">Comments</h2>
+</div> 
+
 <ion-view view-title="comments">
-  <ion-content>
-</br>
-</br>
-    <h2 style="text-align: center;">Commentaires</h2>
+  <ion-content class="has-subheader">
+    
 
 <div class="card">
-  <div class="item item-text-wrap" ng-repeat="comment in commentCtrl.comments">
-    <p style="font-weight:bold;"> Comments :  </p>
-    <div class="row">
-      <div class="col-35">
-        <img style="max-width: 40px;max-height: 40px;height: 100%;border-radius: 50%;"src="/img/{{comment.author.name}}.jpg">
-      </div>
-      <div class="col">
-        <span><b>{{ comment.author.name }} </b> : {{ comment.text }}</span>
-      </div>
-    </div>
-  </div>
-  <div class="item item-text-wrap">
-    <form>
-      <div class="item item-input col-90">
-        <p><input type="text" placeholder="Let's comment" ng-model="commentCtrl.comment.text" required style="padding-right:0px;font-size:12px;" /></p></br>
-        <p><button type="button" class="button test button-small button-balanced col" ng-click="commentCtrl.addComments()" ng-disabled="commentCtrl.$invalid"><img src="img/send.svg" alt="" class="send"></button></p> 
-      </div>
-    </form>
+  <label class="item item-input item-stacked-label" ng-repeat="comment in commentCtrl.comments">
+
+      <a class="item item-avatar" href="#">
+        <img src="/img/{{comment.author.name}}.jpg">
+      
+        <h2>{{ comment.author.name }} </h2> 
+        <p>{{ comment.text }}</p>
+        </a>
+  </label> 
+  <div class="item item-button-right">
+   <input type="text" placeholder="Let's comment"  ng-model="commentCtrl.comment.text" />
+   <button class="button icon ion-paper-airplane button-balanced" ng-click="commentCtrl.addComments()" ng-disabled="commentCtrl.$invalid"></button>
   </div>
 </div>
 

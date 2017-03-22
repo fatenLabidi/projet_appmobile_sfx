@@ -4,12 +4,12 @@
   <button class="button button-icon icon ion-log-out" ui-sref="logOut"></button>
 </ion-header-bar>
 
-<ion-view view-title="Profil">
-  <ion-content>
-    <h1 class="issueListTitle">
-      Profil
-    </h1>
+<div class="bar bar-subheader">
+      <h2 class="title">Profil</h2>
+</div> 
 
+<ion-view view-title="Profil">
+  <ion-content class="has-subheader">
       <div class="list">
         <div class="item item-avatar"><img src="/img/{{profilCtrl.user.name}}.jpg"></div>
                

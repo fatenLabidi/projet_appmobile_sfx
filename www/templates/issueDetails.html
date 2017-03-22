@@ -3,87 +3,64 @@
   <div class="title titre">CitizenEng.</div>
 </ion-header-bar>
 
+<div class="bar bar-subheader">
+      <h2 class="title">Issue details</h2>
+</div> 
+
 <ion-view view-title="issueDetails">
-  <ion-content>
-    <h1 class="issueListTitle">
-      Issue Details
-    </h1>
+  <ion-content class="has-subheader">
 
-    <img ng-src="{{ issueDetailsCtrl.issue.imageUrl }}" style="width:100%;left:0;position:relativ;"/>
+    <div class="list card">
 
-    <div class="card">
-        <div class="item item-text-wrap">
-         <p style="font-weight:bold;"> Creator :  </p>
-         <div class="row">
-           <div class="col-30">
-         <p><img style="max-width: 40px;max-height: 40px;height: 100%;border-radius: 50%;"src="/img/{{issueDetailsCtrl.issue.creator.name}}.jpg">
-            </div>
-            <div class="col">
-               {{ issueDetailsCtrl.issue.creator.firstname }} 
-               {{ issueDetailsCtrl.issue.creator.lastname }} (<span style="font-style: italic;">{{ issueDetailsCtrl.issue.creator.name }}</span>) </p>
-            </div>
-        </div>
-    </div>
+      <div class="item item-avatar">
+        <img src="/img/{{issueDetailsCtrl.issue.creator.name}}.jpg">
+        <h2>{{ issueDetailsCtrl.issue.creator.firstname }} {{ issueDetailsCtrl.issue.creator.lastname }}</h2>
+        <p class="subdued">{{issueDetailsCtrl.issue.createdAt | date: 'dd/MM/yyyy, HH:mm'}}</p>
+       
+      </div>
 
-    <div class="card">
-        <div class="item item-text-wrap">
-         <p style="font-weight:bold;"> Creator :  </p>
-         <p><img style="max-width: 40px;max-height: 40px;width: 100%;height: 100%;border-radius: 50%;" ng-src="/img/{{issueDetailsCtrl.issue.creator.name}}.jpg"> {{ issueDetailsCtrl.issue.creator.firstname }} {{ issueDetailsCtrl.issue.creator.lastname }} (<span style="font-style: italic;">{{ issueDetailsCtrl.issue.creator.name }}</span>) </p>
-         <p style="font-weight:bold;"> Description :  </p>
-         <p> {{ issueDetailsCtrl.issue.description }} </p>
-        </div>
-    </div>
+      <div class="item item-image">
+        <img ng-src="{{ issueDetailsCtrl.issue.imageUrl }}"/>
+      </div>
 
-    <div class="card">
-        <div class="item item-text-wrap">
-        <p style="font-weight:bold;"> Created date :  </p>
-        <p>{{issueDetailsCtrl.issue.createdAt | date: 'dd/MM/yyyy, HH:mm'}}</p>
-        <p style="font-weight:bold;"> Status :  </p>
-        <p> {{ issueDetailsCtrl.issue.state }} </p>
-        </div>
-    </div>
-    <div class="card">
-        <div class="item item-text-wrap">
+      <div class="item item-body">
+        <p> {{ issueDetailsCtrl.issue.description }}</p>
+        <p class="subdued"> {{ issueDetailsCtrl.issue.state }} </p>
+      </div>
+
+      <div class="item item-text-wrap">
          <p style="font-weight:bold;"> Tags :  </p>
          <span ng-repeat="tag in issueDetailsCtrl.issue.tags">{{tag}} <b>/</b> </span>
         </div>
     </div>
+    
 
-    <div class="card">
-        <div class="item item-text-wrap">
-          <p style="font-weight:bold;"> Comments :  </p>
-          <div class="row">
-            <div class="col-35">
-              <img style="max-width: 40px;max-height: 40px;height: 100%;border-radius: 50%;"src="/img/{{issueDetailsCtrl.comments[0].author.name}}.jpg">
-            </div>
-            <div class="col">
-              <span><b>{{ issueDetailsCtrl.comments[0].author.name }} </b> : {{ issueDetailsCtrl.comments[0].text }}</span>
-            </div>
-          </div>
-          <div class=" item item-text-wrap row" style="border-bottom:0;">
-            <div class="col-35">
-              <img style="max-width: 40px;max-height: 40px;height: 100%;border-radius: 50%;"src="/img/{{issueDetailsCtrl.comments[1].author.name}}.jpg">
-            </div>
-            <div class="col">
-              <span><b>{{ issueDetailsCtrl.comments[1].author.name }} </b> : {{ issueDetailsCtrl.comments[1].text }}</span>
-            </div>
-          </div>
+      <div class="card list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Comments :</span>
+          <a class="item item-avatar" href="#">
+            <img src="/img/{{issueDetailsCtrl.comments[0].author.name}}.jpg">
+            <h2>{{ issueDetailsCtrl.comments[0].author.name }}</h2>
+            <p>{{ issueDetailsCtrl.comments[0].text }}</p>
+          </a>
+          <a class="item item-avatar" href="#">
+            <img src="/img/{{issueDetailsCtrl.comments[1].author.name}}.jpg">
+            <h2>{{ issueDetailsCtrl.comments[1].author.name }}</h2>
+            <p>{{ issueDetailsCtrl.comments[1].text }}</p>  
+          </a>
+            </label>
           <div class="comm">
             <button class="button comm button-clear button-balanced" ui-sref='comments({ issueId: issueDetailsCtrl.issue.id })' ng-click="commentCtrl">
-            ...
+              ...
             </button>
           </div>
-          <div class="item item-text-wrap">
-            <form>
-              <div class="item item-input col-90">
-                <p><input type="text" placeholder="Let's comment" ng-model="issueDetailsCtrl.comment.text" required style="padding-right:0px;font-size:12px;" /></p></br>
-                <p><button type="button" class="button test button-small button-balanced col" ng-click="issueDetailsCtrl.addComments()" ng-disabled="issueDetailsCtrl.$invalid"><img src="img/send.svg" alt="" class="send"></button></p> 
-              </div>
-            </form>
+   
+          <div class="item item-button-right">
+            <input type="text" placeholder="Let's comment" ng-model="issueDetailsCtrl.comment.text" />
+            <button class="button icon ion-paper-airplane button-balanced " ng-click="issueDetailsCtrl.addComments()" ng-disabled="issueDetailsCtrl.$invalid"></button>
           </div>
-        </div>
-    </div>
-
-
+      </div>
+      
+    
   </ion-content>
 </ion-view>
