@@ -77,6 +77,7 @@ angular.module('citizen-engagement').controller('LogoutCtrl', function(AuthServi
     AuthService.unsetAuthToken();
     $state.go('login');
   };
+  console.log="Logout";
 });
 angular.module('citizen-engagement').factory('AuthInterceptor', function(AuthService) {
   return {
