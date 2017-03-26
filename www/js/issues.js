@@ -212,6 +212,12 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
         createIssueCtrl.issue.imageUrl = imageRes.data.url;
       }
 
+      //transform string tag to JSON array of tags
+      console.log(createIssueCtrl.issue.tag);
+      var inputTag = createIssueCtrl.issue.tag;
+      var arrayTag = inputTag.split(" ");
+      createIssueCtrl.issue.tags = arrayTag;
+
       $http({
         method: 'POST',
         url: apiUrl+'/issues',
