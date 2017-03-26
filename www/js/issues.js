@@ -6,7 +6,7 @@ angular.module('citizen-engagement').controller('IssueListCtrl', function(AuthSe
   issueListCtrl.showAll = function (){
     $http({
       method: 'GET',
-      url: apiUrl+'/issues?include=creator',
+      url: apiUrl+'/issues?include=creator&include=issueType',
     }).then(function(res) {
         issueListCtrl.issues = res.data;
     }).catch(function() {
@@ -18,7 +18,7 @@ angular.module('citizen-engagement').controller('IssueListCtrl', function(AuthSe
   issueListCtrl.showMine = function (){
     $http({
       method: 'GET',
-      url: apiUrl+'/me/issues?include=creator',
+      url: apiUrl+'/me/issues?include=creator&include=issueType',
     }).then(function(res) {
         issueListCtrl.issues = res.data;
     }).catch(function() {
@@ -37,7 +37,7 @@ angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(Aut
   var issueDetailsCtrl = this;
     $http({
       method: 'GET',
-      url: apiUrl+'/issues/'+ $stateParams.issueId +"?include=creator",
+      url: apiUrl+'/issues/'+ $stateParams.issueId +"?include=creator&include=issueType",
     }).then(function(res) {
         issueDetailsCtrl.issue = res.data;
         console.log($stateParams.issueId);
@@ -254,6 +254,7 @@ angular.module('citizen-engagement').controller('CommentCtrl', function(AuthServ
         url: apiUrl+'/issues/'+ $stateParams.issueId +'/comments',
         data: commentCtrl.comment
       }).then(function(res) {
+        $window.location.reload();
       }).catch(function() {
         commentCtrl.error = 'Could not add an comment.';
       });

@@ -27,13 +27,13 @@
   
 
   <div class="item item-body">
-    {{issue.type}}
+      <h2 style="text-align: center;"><b> {{ issue.issueType.name }}</b></h2>
     <img class="full-image" ng-src="{{issue.imageUrl}}">
     <p style="font-style: italic;">
       {{ issue.description }}
     </p>
     <p>
-      status :<ion-badge item-right>{{ issue.state }}</ion-badge>
+      <b>status</b> : <ion-badge item-right>{{ issue.state }}</ion-badge>
     </p>
   </div>
 

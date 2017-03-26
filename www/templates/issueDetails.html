@@ -22,14 +22,11 @@
         <img ng-src="{{ issueDetailsCtrl.issue.imageUrl }}"/>
       </div>
       <div class="item item-body">
-        <p> {{ issueDetailsCtrl.issue.description }}</p>
-        <p class="subdued"> {{ issueDetailsCtrl.issue.state }} </p>
+        <p> <b>Issue Type</b> : {{ issueDetailsCtrl.issue.issueType.name }}</p>
+        <p> <b>Description</b> : {{ issueDetailsCtrl.issue.description }}</p>
+        <p> <b>Tags</b> : <span ng-repeat="tag in issueDetailsCtrl.issue.tags">{{tag}} / </span> </p>
+        <p> <b>Status</b> : {{ issueDetailsCtrl.issue.state }} </p>
       </div>
-
-      <div class="item item-text-wrap">
-         <p style="font-weight:bold;"> Tags :  </p>
-         <span ng-repeat="tag in issueDetailsCtrl.issue.tags">{{tag}} <b>/</b> </span>
-        </div>
     </div>
     
 

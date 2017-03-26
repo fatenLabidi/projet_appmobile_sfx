@@ -16,7 +16,7 @@ angular.module('citizen-engagement').factory('AuthService', function(store) {
 
   return service;
 });
-angular.module('citizen-engagement').controller('LoginCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('LoginCtrl', function(AuthService, apiUrl, $http, $ionicPopup, $ionicHistory, $ionicLoading, $scope, $state) {
   var loginCtrl = this;
 
   // The $ionicView.beforeEnter event happens every time the screen is displayed.
@@ -65,10 +65,15 @@ angular.module('citizen-engagement').controller('LoginCtrl', function(AuthServic
 
       // If an error occurs, hide the loading message and show an error message.
       $ionicLoading.hide();
-      loginCtrl.error =JSON.stringify(error);
+      $ionicPopup.loginCtrl.error = $ionicPopup.alert({
+        title: 'Authentification error',
+        template: 'Your username or your password is wrong'
+      });
     });
   };
 });
+
+
 
 angular.module('citizen-engagement').controller('LogoutCtrl', function(AuthService, $state) {
   var logoutCtrl = this;
