@@ -22,8 +22,9 @@
         <img ng-src="{{ issueDetailsCtrl.issue.imageUrl }}"/>
       </div>
       <div class="item item-body">
-        <p> {{ issueDetailsCtrl.issue.description }}</p>
-        <p class="subdued"> {{ issueDetailsCtrl.issue.state }} </p>
+        <p> <b>Issue Type</b> : {{ issueDetailsCtrl.issue.issueType.name }}</p>
+        <p> <b>Description</b> : {{ issueDetailsCtrl.issue.description }}</p>
+        <p class="subdued"> <b>Status</b> : {{ issueDetailsCtrl.issue.state }} </p>
       </div>
 
       <div class="item item-text-wrap">
