@@ -6,3 +6,9 @@ platforms/
 plugins/
 config/*
 !config/sample.json
+ionic.config.json
+constants.js
+config.xml
+io-config.json
+
+
