@@ -1,0 +1,46 @@
+<ion-header-bar class="bar bar-header bar-dark">
+  <button class="button button-icon icon ion-chevron-left" ui-sref='tab.issueList'></button>
+  <div class="title titre">CitizenEng.</div>
+</ion-header-bar>
+
+
+<ion-view view-title="Issue List">
+  <ion-content>
+
+    <div class="list">
+    <label label class="item item-input item-select">
+      <div class="input-label">Type</div>
+      <select name="typesList" ng-model="createIssueCtrl.issue.issueTypeHref" value="createIssueCtrl.issue.issueTypeHref" size="1" required>
+        <option value={{type.href}} ng-repeat="type in issueListCtrl.types">{{type.name}}</option>
+      </select>
+    </label>
+    </div>
+
+    <div class="list card" id="corp" ng-repeat="issue in issueListCtrl.issues|filter:{issueTypeHref:createIssueCtrl.issue.issueTypeHref}" >
+
+      <div class="item item-body">
+          <h2 style="text-align: center;"><b> {{ issue.issueType.name }}</b></h2>
+        <img class="full-image" ng-src="{{issue.imageUrl}}">
+        <p style="font-style: italic;">
+          {{ issue.description }}
+        </p>
+        <p>
+          <b>status</b> : <ion-badge item-right>{{ issue.state }}</ion-badge>
+        </p>
+      </div>
+
+      <div class="item item-avatar">
+        <img ng-src="/img/{{issue.creator.name}}.jpg">
+        <h2><b>{{ issue.creator.firstname }} {{ issue.creator.lastname }}</b> ({{issue.creator.name}})</h2>
+        <p>
+        {{issue.createdAt | date: 'dd/MM/yyyy, HH:mm'}}
+        </p>
+        <button class="button button-small button-outline button-dark" ui-sref='issueDetails({ issueId: issue.id })'  ng-click="IssueDetailsCtrl" >
+            <b>Show more</b>
+          </button>
+      </div>
+
+    </div>
+
+  </ion-content>
+</ion-view>

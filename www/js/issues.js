@@ -14,6 +14,17 @@ angular.module('citizen-engagement').controller('IssueListCtrl', function(AuthSe
     })
   };
 
+//get list of types for filter
+  $http({
+    method: 'GET',
+    url: apiUrl+'/issueTypes',
+  }).then(function(res) {
+      issueListCtrl.types = res.data;
+  }).catch(function() {
+      issueListCtrl.error = 'Could not found type of issue.';
+  });
+
+
   // function qui give la liste perso
   issueListCtrl.showMine = function (){
     $http({
