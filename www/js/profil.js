@@ -1,18 +1,22 @@
-angular.module('citizen-engagement').controller('profilCtrl', function(AuthService,apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
+angular.module('citizen-engagement').controller('ProfilCtrl', function(AuthService,apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state) {
   var profilCtrl = this;
-  profilCtrl.edit = false;
 
-    $http({
-      method: 'GET',
-      url:  apiUrl+'/me',
-    }).then(function(res) {
-        profilCtrl.user = res.data;
-    }).catch(function() {
-      profilCtrl.error = 'Could not found profil';
-    });
+	$scope.$on('$ionicView.beforeEnter', function() {
+    profilCtrl.edit = false;
 
-    profilCtrl.modify = function() {
-    	profilCtrl.edit = true;
+		$http({
+			method: 'GET',
+			url:  apiUrl+'/me',
+		}).then(function(res) {
+				profilCtrl.user = res.data;
+		}).catch(function() {
+			profilCtrl.error = 'Could not found profil';
+		});
+	
+  });
+
+	profilCtrl.modify = function() {
+		profilCtrl.edit = true;
 	}
 
 	profilCtrl.save = function() {

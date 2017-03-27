@@ -33,15 +33,10 @@
       <div class="card list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Comments :</span>
-          <a class="item item-avatar" href="#">
-            <img src="/img/{{issueDetailsCtrl.comments[0].author.name}}.jpg">
-            <h2>{{ issueDetailsCtrl.comments[0].author.name }}</h2>
-            <p>{{ issueDetailsCtrl.comments[0].text }}</p>
-          </a>
-          <a class="item item-avatar" href="#">
-            <img src="/img/{{issueDetailsCtrl.comments[1].author.name}}.jpg">
-            <h2>{{ issueDetailsCtrl.comments[1].author.name }}</h2>
-            <p>{{ issueDetailsCtrl.comments[1].text }}</p>  
+          <a class="item item-avatar" href="#" ng-repeat="comment in issueDetailsCtrl.comments">
+            <img src="/img/{{comment.author.name}}.jpg">
+            <h2>{{ comment.author.name }}</h2>
+            <p>{{ comment.text }}</p>
           </a>
             </label>
           <div class="comm">

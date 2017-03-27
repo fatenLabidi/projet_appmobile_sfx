@@ -74,9 +74,12 @@ angular.module('citizen-engagement').controller('IssueDetailsCtrl', function(Aut
       $http({
         method: 'POST',
         url: apiUrl+'/issues/'+ $stateParams.issueId +'/comments',
+        params: {include:'author'},
         data: issueDetailsCtrl.comment
-      }).then(function(res) {  
-         $state.go('issueDetails');
+      }).then(function(res) {
+        issueDetailsCtrl.comments.push(res.data);
+        issueDetailsCtrl.comment = "";
+        issueDetailsCtrl.comments.shift();
       }).catch(function() {
         issueDetailsCtrl.error = 'Could not add an comment.';
       });
@@ -246,6 +249,7 @@ angular.module('citizen-engagement').controller('CreateIssueCtrl', function(Auth
 // ctrl pour les comments get les comment et create un comment
 angular.module('citizen-engagement').controller('CommentCtrl', function(AuthService, apiUrl, $http, $ionicHistory, $ionicLoading, $scope, $state, $stateParams) {
   var commentCtrl = this;
+  commentCtrl.issueId = $stateParams.issueId;
     $http({
       method: 'GET',
       url: apiUrl+'/issues/'+ $stateParams.issueId +'/comments',
@@ -263,9 +267,11 @@ angular.module('citizen-engagement').controller('CommentCtrl', function(AuthServ
       $http({
         method: 'POST',
         url: apiUrl+'/issues/'+ $stateParams.issueId +'/comments',
-        data: commentCtrl.comment
+        data: commentCtrl.comment,
+        params: {include:'author'}
       }).then(function(res) {
-        $window.location.reload();
+        commentCtrl.comments.push(res.data);
+        commentCtrl.comment = "";
       }).catch(function() {
         commentCtrl.error = 'Could not add an comment.';
       });

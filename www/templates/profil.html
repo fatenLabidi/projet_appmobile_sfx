@@ -1,15 +1,17 @@
-<ion-header-bar class="bar bar-header bar-dark">
-  <button class="button button-icon icon ion-chevron-left" ui-sref='tab.issueList'></button>
-  <div class="title titre">CitizenEng.</div>
-  <button class="button button-icon icon ion-log-out" ui-sref="logOut"></button>
-</ion-header-bar>
 
-<div class="bar bar-subheader">
-      <h2 class="title">Profil</h2>
-</div> 
 
 <ion-view view-title="Profil">
-  <ion-content class="has-subheader">
+    <ion-header-bar class="bar bar-header bar-dark">
+      <button class="button button-icon icon ion-chevron-left" ui-sref='tab.issueList'></button>
+      <div class="title titre">CitizenEng.</div>
+      <button class="button button-icon icon ion-log-out" ng-controller="LogoutCtrl as logoutCtrl" ng-click="logoutCtrl.logOut()"></button>
+    </ion-header-bar>
+
+    <div class="bar bar-subheader">
+          <h2 class="title">Profil</h2>
+    </div> 
+      <ion-content class="has-header has-subheader">
+
       <div class="list">
         <div class="item item-avatar"><img src="/img/{{profilCtrl.user.name}}.jpg"></div>
                

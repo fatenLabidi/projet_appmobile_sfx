@@ -86,11 +86,9 @@ angular.module('citizen-engagement').config(function($stateProvider, $urlRouterP
     })
 
     .state('profil', {
-      // The URL (here "/newIssue") is used only internally with Ionic; you never see it displayed anywhere.
-      // In an Angular website, it would be the URL you need to go to with your browser to enter this state.
       url: '/profil',
-      controller: 'profilCtrl',
-      controllerAs: 'profilCtrl',
+      controller: 'ProfilCtrl as profilCtrl',
+      //controllerAs: 'profilCtrl',
       templateUrl: 'templates/profil.html'
     })
 
