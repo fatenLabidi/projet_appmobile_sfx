@@ -7,7 +7,7 @@ plugins/
 config/*
 !config/sample.json
 ionic.config.json
-constants.js
+www/js/constants.js
 config.xml
 io-config.json
 
